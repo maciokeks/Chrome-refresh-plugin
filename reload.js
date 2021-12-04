@@ -1,3 +1,4 @@
+//// TODO: 1. nieskończona pętla do reloadowania strony do póki przycisko jest false 2. usunąc zbędną przestrzeń pod spodem 
 var is_checked;
 var num_sec;
 chrome.runtime.onInstalled.addListener(function (details) {

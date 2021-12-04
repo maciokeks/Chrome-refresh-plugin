@@ -1,6 +1,8 @@
 var is_checked;
 var num_sec;
 chrome.runtime.onInstalled.addListener(function (details) {
+
+
     if (details.reason === "install") {
         chrome.storage.sync.set({
             'toggle': false
@@ -12,14 +14,11 @@ function change(){
     chrome.storage.sync.set({
         'toggle': (document.getElementById('toggle').checked)
     }, function() {});
-
-
     chrome.storage.sync.get('toggle', function(check_fun) {
       //true or false value in is_checked variable
       is_checked = check_fun['toggle'];
       //alert("Value of checbox " + is_checked);
     });
-
 
 }
 chrome.storage.sync.get('toggle', function(storage) {
@@ -28,14 +27,10 @@ chrome.storage.sync.get('toggle', function(storage) {
 
 });
 
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelector('#toggle').addEventListener('change', change);
   document.getElementById("input_box").value = localStorage.getItem("seconds");
   reload(); // main function to make refresh the page
-
 });
 
 function saveComment() {
@@ -59,9 +54,7 @@ function reload(){
               //do reload
               document.getElementById("toggle").checked = true;
               alert("Reloading the page, number of second: " + num_sec);
-
-              
-             header("refresh: 10;");
+              chrome.tabs.reload(); //this work
 
             }else{
               //not reload and show communicate
